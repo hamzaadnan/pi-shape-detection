@@ -31,8 +31,8 @@ def makeContours(img, imgContour):
         area = cv2.contourArea(contour)
         if area > 5000:
             cv2.drawContours(imgContour, contour, -1, (255, 0, 255), 7)
-            peri = cv2.arcLength(contour, True)
-            approx = cv2.approxPolyDP(contour, 0.02*peri, True)
+            perimeter = cv2.arcLength(contour, True)
+            approx = cv2.approxPolyDP(contour, 0.02*perimeter, True)
             x, y, w, h = cv2.boundingRect(approx)
             cv2.rectangle(imgContour, (x, y), (x + w, y + h), (0, 255, 0), 5)
             cv2.putText(imgContour, "Points: " + str(len(approx)), (x + w + 20, y + 20), cv2.FONT_HERSHEY_COMPLEX, 0.7, (0, 255, 0), 2)
