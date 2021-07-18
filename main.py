@@ -20,8 +20,8 @@ def nothing(a):
 #Create trackbars to acquire thresholds
 cv2.namedWindow("Threshold Parameters")
 cv2.resizeWindow("Threshold Parameters", 640, 240)
-cv2.createTrackbar("Threshold 1" , "Parameters", 20, 255, nothing)
-cv2.createTrackbar("Threshold 2", "Parameters", 85, 255, nothing)
+cv2.createTrackbar("Threshold 1" , "Threshold Parameters", 20, 255, nothing)
+cv2.createTrackbar("Threshold 2", "Threshold Parameters", 85, 255, nothing)
 
 #Find contours and area and draw them 
 def makeContours(img, imgContour):
@@ -29,10 +29,10 @@ def makeContours(img, imgContour):
 
     for contour in contours:
         area = cv2.contourArea(contour)
-        if area > 5000:
+        if area > 1000: #Adjust according to target area
             cv2.drawContours(imgContour, contour, -1, (255, 0, 255), 7)
-            peri = cv2.arcLength(contour, True)
-            approx = cv2.approxPolyDP(contour, 0.02*peri, True)
+            perimeter = cv2.arcLength(contour, True)
+            approx = cv2.approxPolyDP(contour, 0.02*perimeter, True)
             x, y, w, h = cv2.boundingRect(approx)
             cv2.rectangle(imgContour, (x, y), (x + w, y + h), (0, 255, 0), 5)
             cv2.putText(imgContour, "Points: " + str(len(approx)), (x + w + 20, y + 20), cv2.FONT_HERSHEY_COMPLEX, 0.7, (0, 255, 0), 2)
