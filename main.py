@@ -34,9 +34,10 @@ def makeContours(img, imgContour):
             perimeter = cv2.arcLength(contour, True)
             approx = cv2.approxPolyDP(contour, 0.02*perimeter, True)
             x, y, w, h = cv2.boundingRect(approx)
-            cv2.rectangle(imgContour, (x, y), (x + w, y + h), (0, 255, 0), 5)
-            cv2.putText(imgContour, "Points: " + str(len(approx)), (x + w + 20, y + 20), cv2.FONT_HERSHEY_COMPLEX, 0.7, (0, 255, 0), 2)
-            cv2.putText(imgContour, "Area: " + str(int(area)), (x + w + 20, y+ 45), cv2.FONT_HERSHEY_COMPLEX, 0.7, (0, 255, 0) , 2)
+            if len(approx) > 10:
+                cv2.rectangle(imgContour, (x, y), (x + w, y + h), (0, 255, 0), 5)
+                cv2.putText(imgContour, "Points: " + str(len(approx)), (x + w + 20, y + 20), cv2.FONT_HERSHEY_COMPLEX, 0.7, (0, 255, 0), 2)
+                cv2.putText(imgContour, "Area: " + str(int(area)), (x + w + 20, y+ 45), cv2.FONT_HERSHEY_COMPLEX, 0.7, (0, 255, 0) , 2)
             
 while True: 
     success, img = cap.read() #Acquire each frame
