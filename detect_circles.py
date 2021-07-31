@@ -53,12 +53,12 @@ while True:
               print("Second Ball Dropped!")
               time.sleep(3)
               break
-          except KeyboardInterrupt:
+        except KeyboardInterrupt:
             p.stop()
             GPIO.cleanup()
             
-          if (firstFlag and secondFlag):
-            break
+            if (firstFlag and secondFlag):
+                break
             
 if (firstFlag and secondFlag):
   cap.release()
