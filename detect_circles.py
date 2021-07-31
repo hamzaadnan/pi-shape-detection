@@ -3,7 +3,7 @@ import numpy as np
 import RPi.GPIO as GPIO
 import time
 
-#Initialize servo
+# Initialize servo
 servoPIN = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(servoPIN, GPIO.OUT)
@@ -11,10 +11,10 @@ GPIO.setup(servoPIN, GPIO.OUT)
 p = GPIO.PWM(servoPIN, 50)
 p.start(2.5)
 
-#Indicate whether first object has been dropped
+# Indicate whether first object has been dropped
 firstFlag = False
 
-#Indicate whether second object has been dropped
+# Indicate whether second object has been dropped
 secondFlag = False
 
 
