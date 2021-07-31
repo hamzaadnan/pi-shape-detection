@@ -1,20 +1,9 @@
 import cv2
 import numpy as np
 
-#Comments with * represent code for color detection
-#which is not currently being implemented
-
 
 # Get video from default camera
 cap = cv2.VideoCapture(0)
-
-# To detect black area *
-boundaries = [
-    [0, 0, 0], [20, 20, 20]
-]
-lower = np.array(boundaries[0], dtype="uint8")
-upper = np.array(boundaries[1], dtype="uint8")
-
 
 
 while True:
@@ -30,10 +19,6 @@ while True:
 
     # Detect circles using Hough Transform
     circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1.2, 100, minRadius=0)
-
-    # Applies a mask to find specific color *
-    mask = cv2.inRange(copy, lower, upper)
-    output = cv2.bitwise_and(copy, copy, mask = mask)
     
     # Draws circle
     if circles is not None:
